@@ -1,0 +1,16 @@
+[app]
+mode = "DEVELOPMENT"
+debug = true
+name = "Backend Service"
+url = "0.0.0.0"
+port = 4000
+
+[token.jwt]
+key = "generated123"
+expired = 259200
+
+[connection.postgresql]
+dsn = "host=postgre_service port=5432 user=postgres password=postgres dbname=dbo_db TimeZone=UTC sslmode=disable application_name=dbo_service"
+max_open_connections = 10
+max_idle_connections = 10
+max_lifetime_connections = 360

@@ -1,0 +1,30 @@
+version: '3.8'
+
+services:
+  backend:
+    container_name: backend
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "4000:4000"
+    networks:
+      - dbo-network
+    depends_on:
+      - postgre_service
+  
+  postgre_service:
+    container_name: postgre_service
+    image: postgres:latest
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: dbo_db
+    ports:
+      - "5432:5432"  # Exposes the database service on port 5432
+    networks:
+      - dbo-network
+
+networks:
+  dbo-network:
+    driver: bridge
